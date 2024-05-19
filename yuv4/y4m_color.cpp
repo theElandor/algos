@@ -23,6 +23,10 @@ void upsample(std::vector<uint8_t> &source, std::vector<uint8_t> &dest){
 	  dest.push_back(source[i]);	  
 	  dest.push_back(source[i+1]);
 	  dest.push_back(source[i+1]);	  
+	  dest.push_back(source[i]);
+	  dest.push_back(source[i]);	  
+	  dest.push_back(source[i+1]);
+	  dest.push_back(source[i+1]);      
   }
 }
 uint8_t saturate1(uint8_t base) {
@@ -107,7 +111,7 @@ bool y4m_extract_color(const std::string &filename, std::vector<mat<vec3b>> &fra
 				B = saturate2(1.164*(Y-16) + 2.017*(cb-128) + 0*(cr-128));				
 				//current_frame(i,j) = {y[i*w+j],up_Cb[i*w+j], up_Cr[i*w+j]};
 				// saturation
-				current_frame(i,j) = {R,G,B};				
+				current_frame(i,j) = {R,G,B};
 			}
 		}
 		frames.push_back(std::move(current_frame));
@@ -131,5 +135,5 @@ int main(){
 	// 	return EXIT_FAILURE;
 	// }	
 	std::cout<<filename<<" read successfully"<<std::endl;
-    return EXIT_SUCCESS;    
+    return EXIT_SUCCESS;
 }
